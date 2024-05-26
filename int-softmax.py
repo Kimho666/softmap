@@ -20,7 +20,7 @@ def i_poly(q,S,M):
     q_b = saturation(torch.floor(b / S).to(torch.int8), M)
     q_c = saturation(torch.floor(c / (a * (S**2))).to(torch.int16), 2*M)
     S_out = a * (S**2)
-    q_out = ((q + q_b).to(torch.int16))**2 + q_c
+    # q_out = ((q + q_b).to(torch.int16))**2 + q_c
     q_out = saturation(((q + q_b).to(torch.int16))**2 + q_c, 2*M+5)
     # print(f'S:{S}, q:{q}, q_b:{q_b}, q_c:{q_c}, q_out:{q_out}, S_out:{S_out}')
 
@@ -30,7 +30,7 @@ def i_exp(q,S,M):
 
     # q_ln2 = torch.floor(math.log(2) / S).int()
     # q_ln2 = torch.floor(math.log(2) / S).to(torch.int8)
-    q_ln2 = saturation(torch.floor(math.log(2) / S).to(torch.int8), 4)
+    q_ln2 = saturation(torch.floor(math.log(2) / S).to(torch.int8), 5) # uint 4
     z = torch.floor(-q / q_ln2).to(torch.int8)
     # print(f'z:{z}, q={q}, q_ln2={q_ln2}')
     
