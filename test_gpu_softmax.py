@@ -9,7 +9,7 @@ bs_list = [1,8,16,32] # batch_size
 seql_list = [1,128,256,512,1024,2048,4096] # sequence length
 for bs in bs_list:
     for sl in seql_list:
-        x = torch.rand((bs, head_num , sl, 128)).cuda()
+        x = torch.rand((bs, head_num , sl, sl)).cuda()
         COUNT = 100000
         # warmup
         for _ in range(1000):
